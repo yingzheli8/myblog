@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李繁的个人博客</title>
+    <style>
+        /* 基础样式 */
+        :root {
+            --theme-color: #135d2c;  /* 主色调沿用乡村振兴主题色 */
+            --text-color: #333;
+        }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background: #f5f7f9;
+        }
+        
+        /* 头部区域 */
+        .header {
+            background: linear-gradient(rgba(19,93,44,0.9), rgba(19,93,44,0.8)), 
+                        url('banner.jpg') center/cover;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .profile {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin: 1rem auto;
+        }
+        
+        /* 导航菜单 */
+        .nav {
+            background: var(--theme-color);
+            padding: 1rem;
+        }
+        .nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            transition: background 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* 内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .article-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .article-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* 页脚 */
+        .footer {
+            background: var(--theme-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="avatar.jpg" alt="李繁" class="profile">
+        <h1>李繁的个人博客</h1>
+        <p>扎根基层八年 | 记录乡村振兴实践 | 分享工作经验</p>
+    </header>
+    
+    <nav class="nav">
+        <ul>
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#work">工作动态</a></li>
+            <li><a href="#policy">政策解读</a></li>
+            <li><a href="#notes">学习笔记</a></li>
+            <li><a href="#contact">联系我</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="article-list">
+            <!-- 最新文章模块 -->
+            <article class="article-card">
+                <h2>【工作日志】春耕生产组织经验分享</h2>
+                <time>2025-03-25</time>
+                <p>今年通过土地流转合作社模式，我们实现了600亩连片种植区的高效管理...</p>
+            </article>
+            
+            <!-- 政策解读模块 -->
+            <article class="article-card">
+                <h2>2025年中央一号文件要点解析</h2>
+                <p>结合本镇实际，重点解读新型集体经济组织培育方案...</p>
+            </article>
+        </section>
+
+        <!-- 个人信息模块 -->
+        <section id="about" class="article-card">
+            <h2>关于乡村振兴专干</h2>
+            <p>毕业于中国农业大学农村发展管理专业，现任XX镇乡村振兴办公室主任，主要负责：
+                <ul>
+                    <li>乡村产业规划实施</li>
+                    <li>新型职业农民培训</li>
+                    <li>农村人居环境整治</li>
+                </ul>
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 李繁的乡村振兴工作手记 | 联系方式：15697240813@163.com</p>
+        <p>网站构建：个人部署</p>
+    </footer>
+</body>
+</html>
