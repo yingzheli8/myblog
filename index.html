@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="https://yingzheli8.github.io/myblog/">
     <title>力帆远航个人博客</title>
     <style>
         :root {
@@ -53,6 +54,7 @@
             border: 3px solid var(--accent-color);
             margin-bottom: 1rem;
             box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+            object-fit: cover;
         }
 
         nav {
@@ -97,6 +99,16 @@
             width: 100%;
             border-radius: 8px;
             margin: 1rem 0;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .douyin-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
         footer {
@@ -105,7 +117,6 @@
             margin-top: 3rem;
         }
 
-        /* 动态星空特效 */
         .stars {
             position: fixed;
             width: 100%;
@@ -130,16 +141,18 @@
     
     <div class="container">
         <header>
-            <img src="https://raw.github.com/yingzheli8/myblog/main/avatar.jpg" alt="头像" class="avatar"> <!-- 替换为您的头像URL -->
+            <img src="avatar.jpg" alt="头像" class="avatar" 
+                 loading="lazy" 
+                 onerror="this.src='placeholder.jpg'">
             <h1>力帆的技术笔记</h1>
-            <p>三十而立 | 普通开发者 | 技术探索者</p>
+            <p>普通开发者 | 技术探索者</p>
         </header>
 
         <nav>
             <a href="#projects">我的项目</a>
             <a href="#essays">技术随笔</a>
             <a href="#tools">实用工具</a>
-            <a href="#contact">联系我</a>
+            <a href="#contact">社交账号</a>
         </nav>
 
         <section id="projects">
@@ -153,11 +166,11 @@
                 
                 <div class="project-card">
                     <h3>力帆投屏</h3>
-                    <img src="https://via.placeholder.com/300x200" alt="演示动图" class="gif-preview"> <!-- 替换为您的GIF URL -->
+                    <img src="sreengo.gif" alt="演示动图" class="gif-preview"
+                         loading="lazy"
+                         onerror="this.style.display='none'">
                     <a href="https://力帆投屏.funlee.ggff.net/" target="_blank">开始投屏</a>
                 </div>
-
-                <!-- 其他项目卡片... -->
             </div>
         </section>
 
@@ -179,16 +192,43 @@
         </section>
 
         <section id="contact" style="margin-top: 3rem;">
-            <h2>📧 联系方式</h2>
-            <div class="project-card">
-                <p>技术交流或合作请联系：</p>
-                <a href="mailto:lfan6049@gmail.com">lfan6049@gmail.com</a>
+            <h2>📱 社交联系</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="wechat-contact">
+                        <img src="https://img.icons8.com/ios-filled/30/3498db/weixing.png" alt="微信图标">
+                        <span id="wechatId">the_open_joy</span>
+                        <button onclick="copyWechat()" 
+                                style="margin-left: 10px; padding: 2px 8px; 
+                                       background: #3498db; border: none; 
+                                       border-radius: 4px; color: white; 
+                                       cursor: pointer;">
+                            复制微信号
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="大号.png" alt="抖音大号" 
+                         class="douyin-img"
+                         loading="lazy"
+                         onerror="this.src='placeholder.jpg'">
+                    <p style="margin-top: 1rem;">乡村振兴实践</p>
+                </div>
+
+                <div class="project-card">
+                    <img src="小号.png" alt="抖音小号" 
+                         class="douyin-img"
+                         loading="lazy"
+                         onerror="this.src='placeholder.jpg'">
+                    <p style="margin-top: 1rem;">开发者日常</p>
+                </div>
             </div>
         </section>
     </div>
 
     <footer>
-        <p>© 2025 力帆的技术笔记 - 保持好奇，持续探索</p>
+        <p>© 2024 力帆的技术笔记 - 保持好奇，持续探索</p>
     </footer>
 
     <script>
@@ -225,6 +265,14 @@
                 if(star.x > canvas.width) star.x = 0;
             });
             requestAnimationFrame(animate);
+        }
+
+        // 微信复制功能
+        function copyWechat() {
+            const wechatId = document.getElementById('wechatId').innerText;
+            navigator.clipboard.writeText(wechatId).then(() => {
+                alert('微信号已复制到剪贴板');
+            });
         }
 
         window.addEventListener('resize', () => {
