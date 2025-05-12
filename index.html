@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="https://yingzheli8.github.io/myblog/">
     <title>力帆远航个人博客</title>
     <style>
         :root {
@@ -17,6 +16,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -141,25 +144,23 @@
     
     <div class="container">
         <header>
-            <img src="avatar.jpg" alt="头像" class="avatar" 
+            <img src="./avatar.jpg" alt="头像" class="avatar" 
                  loading="lazy" 
-                 onerror="this.src='placeholder.jpg'">
+                 onerror="this.src='./placeholder.jpg'">
             <h1>力帆的技术笔记</h1>
             <p>普通开发者 | 技术探索者</p>
         </header>
 
         <nav>
-            <a href="#projects">我的项目</a>
-            <a href="#essays">技术随笔</a>
-            <a href="#tools">实用工具</a>
-            <a href="#contact">社交账号</a>
+            <a href="#projects" onclick="smoothScroll('#projects')">我的项目</a>
+            <a href="#essays" onclick="smoothScroll('#essays')">技术随笔</a>
+            <a href="#tools" onclick="smoothScroll('#tools')">实用工具</a>
+            <a href="#contact" onclick="smoothScroll('#contact')">社交账号</a>
         </nav>
 
-        <!-- 自部署项目区 -->
         <section id="projects">
             <h2>🚀 自部署项目</h2>
             <div class="projects-grid">
-                <!-- 原有项目保持不变 -->
                 <div class="project-card">
                     <h3>阅后即焚</h3>
                     <p>安全加密信息传递系统</p>
@@ -168,13 +169,12 @@
                 
                 <div class="project-card">
                     <h3>力帆投屏</h3>
-                    <img src="sreengo.gif" alt="演示动图" class="gif-preview"
+                    <img src="./sreengo.gif" alt="演示动图" class="gif-preview"
                          loading="lazy"
                          onerror="this.style.display='none'">
                     <a href="https://力帆投屏.funlee.ggff.net/" target="_blank">开始投屏</a>
                 </div>
         
-                <!-- 新增影视搜索 -->
                 <div class="project-card">
                     <h3>影视搜索</h3>
                     <p>在线影视资源聚合平台</p>
@@ -186,7 +186,6 @@
                     </a>
                 </div>
         
-                <!-- 在线文章编辑 -->
                 <div class="project-card">
                     <h3>在线文档编辑显示</h3>
                     <p>可配合浏览器网页朗读插件实现实时的网页语音朗读</p>
@@ -200,7 +199,6 @@
                     </a>
                 </div>
         
-                <!-- 私人歌单 -->
                 <div class="project-card">
                     <h3>私人歌单</h3>
                     <p>基于Navidrome的音乐库</p>
@@ -213,7 +211,6 @@
                     </a>
                 </div>
         
-                <!-- 个人笔记 -->
                 <div class="project-card">
                     <h3>技术笔记</h3>
                     <p>个人知识管理系统 <small style="color: #95a5a6;">（服务状态：偶发不稳定）</small></p>
@@ -243,7 +240,6 @@
                     <a href="https://replicate.com/arielreplicate/deoldify_image" target="_blank">尝试修复</a>
                 </div>
                 
-                <!-- 歌曲识别 -->
                 <div class="project-card">
                     <h3>音乐雷达</h3>
                     <p>音频指纹识别工具</p>
@@ -255,7 +251,6 @@
                     </a>
                 </div>
         
-                <!-- 豆包抠图 -->
                 <div class="project-card">
                     <h3>智能抠图</h3>
                     <p>AI图像背景处理工具</p>
@@ -286,18 +281,18 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="大号.png" alt="抖音大号" 
+                    <img src="./大号.png" alt="抖音大号" 
                          class="douyin-img"
                          loading="lazy"
-                         onerror="this.src='placeholder.jpg'">
+                         onerror="this.src='./placeholder.jpg'">
                     <p style="margin-top: 1rem;">乡村振兴实践</p>
                 </div>
 
                 <div class="project-card">
-                    <img src="小号.png" alt="抖音小号" 
+                    <img src="./小号.png" alt="抖音小号" 
                          class="douyin-img"
                          loading="lazy"
-                         onerror="this.src='placeholder.jpg'">
+                         onerror="this.src='./placeholder.jpg'">
                     <p style="margin-top: 1rem;">开发者日常</p>
                 </div>
             </div>
@@ -350,6 +345,19 @@
             navigator.clipboard.writeText(wechatId).then(() => {
                 alert('微信号已复制到剪贴板');
             });
+        }
+
+        // 平滑滚动函数
+        function smoothScroll(target) {
+            event.preventDefault();
+            const element = document.querySelector(target);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                window.history.replaceState(null, null, target);
+            }
         }
 
         window.addEventListener('resize', () => {
