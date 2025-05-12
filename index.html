@@ -3,135 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李繁的个人博客</title>
+    <title>力帆的技术笔记 - 三十而立的代码人生</title>
     <style>
-        /* 基础样式 */
         :root {
-            --theme-color: #135d2c;  /* 主色调沿用乡村振兴主题色 */
-            --text-color: #333;
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #ecf0f1;
         }
-        body {
-            font-family: "Microsoft YaHei", sans-serif;
-            line-height: 1.6;
+
+        * {
             margin: 0;
-            background: #f5f7f9;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
-        
-        /* 头部区域 */
-        .header {
-            background: linear-gradient(rgba(19,93,44,0.9), rgba(19,93,44,0.8)), 
-                        url('banner.jpg') center/cover;
-            color: white;
+
+        body {
+            background: linear-gradient(-45deg, #2c3e50, #34495e, #2c3e50, #2980b9);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
-            text-align: center;
+            position: relative;
+            z-index: 1;
         }
-        .profile {
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 3px solid white;
-            margin: 1rem auto;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1rem;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
         }
-        
-        /* 导航菜单 */
-        .nav {
-            background: var(--theme-color);
+
+        nav {
+            background: rgba(44, 62, 80, 0.9);
             padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            backdrop-filter: blur(5px);
         }
-        .nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .nav a {
-            color: white;
+
+        nav a {
+            color: var(--text-color);
             text-decoration: none;
-            padding: 1rem 2rem;
-            transition: background 0.3s;
+            margin: 0 1.5rem;
+            transition: color 0.3s;
         }
-        .nav a:hover {
-            background: rgba(255,255,255,0.1);
+
+        nav a:hover {
+            color: var(--accent-color);
         }
-        
-        /* 内容区域 */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .article-list {
+
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 2rem;
         }
-        .article-card {
-            background: white;
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
             padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gif-preview {
+            width: 100%;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 1rem 0;
         }
-        
-        /* 页脚 */
-        .footer {
-            background: var(--theme-color);
-            color: white;
+
+        footer {
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem;
             margin-top: 3rem;
+        }
+
+        /* 动态星空特效 */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+            nav a {
+                margin: 0.5rem 0;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <img src="avatar.jpg" alt="李繁" class="profile">
-        <h1>李繁的个人博客</h1>
-        <p>扎根基层八年 | 记录乡村振兴实践 | 分享工作经验</p>
-    </header>
+    <canvas class="stars"></canvas>
     
-    <nav class="nav">
-        <ul>
-            <li><a href="#about">关于我</a></li>
-            <li><a href="#work">工作动态</a></li>
-            <li><a href="#policy">政策解读</a></li>
-            <li><a href="#notes">学习笔记</a></li>
-            <li><a href="#contact">联系我</a></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <header>
+            <img src="https://via.placeholder.com/120" alt="头像" class="avatar"> <!-- 替换为您的头像URL -->
+            <h1>力帆的技术笔记</h1>
+            <p>三十而立 | 全栈开发者 | 技术探索者</p>
+        </header>
 
-    <main class="container">
-        <section class="article-list">
-            <!-- 最新文章模块 -->
-            <article class="article-card">
-                <h2>【工作日志】春耕生产组织经验分享</h2>
-                <time>2025-03-25</time>
-                <p>今年通过土地流转合作社模式，我们实现了600亩连片种植区的高效管理...</p>
-            </article>
-            
-            <!-- 政策解读模块 -->
-            <article class="article-card">
-                <h2>2025年中央一号文件要点解析</h2>
-                <p>结合本镇实际，重点解读新型集体经济组织培育方案...</p>
-            </article>
+        <nav>
+            <a href="#projects">我的项目</a>
+            <a href="#essays">技术随笔</a>
+            <a href="#tools">实用工具</a>
+            <a href="#contact">联系我</a>
+        </nav>
+
+        <section id="projects">
+            <h2>🚀 自部署项目</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>阅后即焚</h3>
+                    <p>安全加密信息传递系统</p>
+                    <a href="https://jiami.funlee.ggff.net/" target="_blank">访问服务</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>力帆投屏</h3>
+                    <img src="https://via.placeholder.com/300x200" alt="演示动图" class="gif-preview"> <!-- 替换为您的GIF URL -->
+                    <a href="https://力帆投屏.funlee.ggff.net/" target="_blank">开始投屏</a>
+                </div>
+
+                <!-- 其他项目卡片... -->
+            </div>
         </section>
 
-        <!-- 个人信息模块 -->
-        <section id="about" class="article-card">
-            <h2>关于乡村振兴专干</h2>
-            <p>毕业于中国农业大学农村发展管理专业，现任XX镇乡村振兴办公室主任，主要负责：
-                <ul>
-                    <li>乡村产业规划实施</li>
-                    <li>新型职业农民培训</li>
-                    <li>农村人居环境整治</li>
-                </ul>
-            </p>
+        <section id="tools" style="margin-top: 3rem;">
+            <h2>🔧 实用工具集</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>自由画布</h3>
+                    <p>创意可视化工具</p>
+                    <a href="https://tldraw.dev/" target="_blank">开始创作</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>老照片修复</h3>
+                    <p>基于AI的图像修复工具</p>
+                    <a href="https://replicate.com/arielreplicate/deoldify_image" target="_blank">尝试修复</a>
+                </div>
+            </div>
         </section>
-    </main>
 
-    <footer class="footer">
-        <p>© 2025 李繁的乡村振兴工作手记 | 联系方式：15697240813@163.com</p>
-        <p>网站构建：个人部署</p>
+        <section id="contact" style="margin-top: 3rem;">
+            <h2>📧 联系方式</h2>
+            <div class="project-card">
+                <p>技术交流或合作请联系：</p>
+                <a href="mailto:lfan6049@gmail.com">lfan6049@gmail.com</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 力帆的技术笔记 - 保持好奇，持续探索</p>
     </footer>
+
+    <script>
+        // 动态星空特效
+        const canvas = document.querySelector('.stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createStars() {
+            stars = [];
+            for(let i = 0; i < 150; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.5,
+                    o: Math.random()
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.o})`;
+                ctx.fill();
+                star.x += star.o * 0.3;
+                if(star.x > canvas.width) star.x = 0;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            createStars();
+        });
+
+        resize();
+        createStars();
+        animate();
+    </script>
 </body>
 </html>
