@@ -198,18 +198,72 @@
                        开始编辑
                     </a>
                 </div>
-        
+                
                 <div class="project-card">
                     <h3>私人歌单</h3>
                     <p>基于Navidrome的音乐库</p>
+                    
+                    <!-- 新增账号信息模块 -->
+                    <div class="guest-account" style="margin: 12px 0; font-size: 0.9em;">
+                        <!-- 账号信息 -->
+                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                            <svg style="width:18px; height:18px; margin-right:8px;" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/>
+                            </svg>
+                            <span>账号: 
+                                <span class="copyable-text" onclick="copyText('youke')" 
+                                      style="cursor: pointer; color: #3498db;
+                                             border-bottom: 1px dashed #3498db;">
+                                    youke
+                                </span>
+                            </span>
+                        </div>
+                
+                        <!-- 密码信息 -->
+                        <div style="display: flex; align-items: center;">
+                            <svg style="width:18px; height:18px; margin-right:8px;" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6z"/>
+                            </svg>
+                            <span>密码: 
+                                <span class="copyable-text" onclick="copyText('123456tt')" 
+                                      style="cursor: pointer; color: #2ecc71;
+                                             border-bottom: 1px dashed #2ecc71;">
+                                    123456tt
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                
                     <a href="https://lee.funlee.top/" 
                        target="_blank"
                        style="background: linear-gradient(45deg, #3498db, #9b59b6); 
                               -webkit-background-clip: text;
-                              color: transparent;">
+                              color: transparent;
+                              margin-top: 12px;
+                              display: inline-block;">
                        播放音乐
                     </a>
                 </div>
+                
+                <script>
+                // 通用复制函数（可与之前的复制逻辑整合）
+                function copyText(text) {
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(text).then(() => {
+                            showFloatingTip('复制成功!');
+                        }).catch(() => {
+                            showFloatingTip('复制失败，请手动选择');
+                        });
+                    } else {
+                        const textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        showFloatingTip('已复制');
+                    }
+                }        
         
                 <div class="project-card">
                     <h3>技术笔记</h3>
