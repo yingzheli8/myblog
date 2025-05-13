@@ -147,15 +147,15 @@
             <img src="./avatar.jpg" alt="头像" class="avatar" 
                  loading="lazy" 
                  onerror="this.src='./placeholder.jpg'">
-            <h1>力帆的技术笔记</h1>
+            <h1>力帆远航个人博客</h1>
             <p>普通开发者 | 技术探索者</p>
         </header>
 
         <nav>
             <a href="#projects" onclick="smoothScroll('#projects')">我的项目</a>
-            <a href="#essays" onclick="smoothScroll('#essays')">技术随笔</a>
             <a href="#tools" onclick="smoothScroll('#tools')">实用工具</a>
             <a href="#contact" onclick="smoothScroll('#contact')">社交账号</a>
+            <a href="#essays" onclick="smoothScroll('#essays')">随笔(待定)</a>
         </nav>
 
         <section id="projects">
@@ -244,41 +244,10 @@
                        播放音乐
                     </a>
                 </div>
-                
-                <script>
-                // 通用复制函数（可与之前的复制逻辑整合）
-                function copyText(text) {
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText(text).then(() => {
-                            showFloatingTip('复制成功!');
-                        }).catch(() => {
-                            showFloatingTip('复制失败，请手动选择');
-                        });
-                    } else {
-                        const textarea = document.createElement('textarea');
-                        textarea.value = text;
-                        document.body.appendChild(textarea);
-                        textarea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textarea);
-                        showFloatingTip('已复制');
-                    }
-                }        
-                // 浮动提示（复用原有样式）
-                function showFloatingTip(message) {
-                    const tip = document.createElement('div');
-                    tip.textContent = message;
-                    tip.style = `position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-                                 background: rgba(0,0,0,0.8); color: white; padding: 8px 16px;
-                                 border-radius: 20px; font-size: 14px; z-index: 999;`;
-                    document.body.appendChild(tip);
-                    setTimeout(() => tip.remove(), 2000);
-                }
-                </script>
-                
+                                
                 <div class="project-card">
-                    <h3>技术笔记</h3>
-                    <p>个人知识管理系统 <small style="color: #95a5a6;">（服务状态：偶发不稳定）</small></p>
+                    <h3>笔记</h3>
+                    <p>个人笔记管理系统 <small style="color: #95a5a6;">（服务状态：偶发不稳定）</small></p>
                     <a href="https://bj.lanxi.dpdns.org/" 
                        target="_blank"
                        class="status-indicator"
@@ -424,7 +393,36 @@
                 window.history.replaceState(null, null, target);
             }
         }
-
+        
+        // 通用复制函数（可与之前的复制逻辑整合）
+        function copyText(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showFloatingTip('复制成功!');
+                }).catch(() => {
+                    showFloatingTip('复制失败，请手动选择');
+                });
+            } else {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showFloatingTip('已复制');
+            }
+        }        
+        // 浮动提示（复用原有样式）
+        function showFloatingTip(message) {
+            const tip = document.createElement('div');
+            tip.textContent = message;
+            tip.style = `position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+                         background: rgba(0,0,0,0.8); color: white; padding: 8px 16px;
+                         border-radius: 20px; font-size: 14px; z-index: 999;`;
+            document.body.appendChild(tip);
+            setTimeout(() => tip.remove(), 2000);
+        }
+        
         window.addEventListener('resize', () => {
             resize();
             createStars();
