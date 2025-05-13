@@ -264,7 +264,18 @@
                         showFloatingTip('已复制');
                     }
                 }        
-        
+                // 浮动提示（复用原有样式）
+                function showFloatingTip(message) {
+                    const tip = document.createElement('div');
+                    tip.textContent = message;
+                    tip.style = `position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+                                 background: rgba(0,0,0,0.8); color: white; padding: 8px 16px;
+                                 border-radius: 20px; font-size: 14px; z-index: 999;`;
+                    document.body.appendChild(tip);
+                    setTimeout(() => tip.remove(), 2000);
+                }
+                </script>
+                
                 <div class="project-card">
                     <h3>技术笔记</h3>
                     <p>个人知识管理系统 <small style="color: #95a5a6;">（服务状态：偶发不稳定）</small></p>
