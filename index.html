@@ -148,7 +148,7 @@
                  loading="lazy" 
                  onerror="this.src='./placeholder.jpg'">
             <h1>力帆远航个人博客</h1>
-            <p>普通开发者 | 技术探索</p>
+            <p>普通开发 | 享受技术</p>
         </header>
 
         <nav>
@@ -170,10 +170,11 @@
                 
                 <div class="project-card">
                     <h3>力帆投屏</h3>
+                    <p>多设备共享屏幕，有浏览器即可用，开会视频讲解神器</p>
                     <img src="./sreengo.gif" alt="演示动图" class="gif-preview"
                          loading="lazy"
                          onerror="this.style.display='none'">
-                    <a href="https://力帆投屏.funlee.ggff.net/" target="_blank">开始投屏</a>
+                    <a href="https://力帆投屏.funlee.ggff.net/" target="_blank">开始电脑端投屏</a>
                 </div>
         
                 <div class="project-card">
@@ -189,7 +190,7 @@
         
                 <div class="project-card">
                     <h3>在线文档编辑显示</h3>
-                    <p>可配合浏览器网页朗读插件实现实时的网页语音朗读</p>
+                    <p>可配合浏览器网页朗读插件(例如豆包)实现实时的网页语音朗读</p>
                     <a href="https://copyit.lanxi.dpdns.org/" 
                        target="_blank"
                        class="link-with-icon">
@@ -305,11 +306,13 @@
                 <div class="project-card">
                     <h3>微信视频号</h3>
                     <p>技术开发短视频分享<br>（复制后打开微信搜索）</p>
-                    <button class="gradient-button" 
-                            onclick="copyText('小刃3591')"
-                            onmouseout="this.blur()">
-                        复制账号
-                    </button>
+                            <span>账号名: 
+                                <span class="copyable-text" onclick="copyText('小刃3591')" 
+                                      style="cursor: pointer; color: #3498db;
+                                             border-bottom: 1px dashed #3498db;">
+                                    小刃3591
+                                </span>
+                            </span>                    
                 </div>
                 
                 <div class="project-card">
