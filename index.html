@@ -140,7 +140,7 @@
             border-radius: 4px;
         }
         /* ▲▲▲ 新增代码到这里结束 ▲▲▲ */
-
+ 
         .douyin-img {
             width: 100%;
             height: 250px;
@@ -172,6 +172,67 @@
                 margin: 0.5rem 0;
             }
         }
+        /* ▼▼▼ 新增放大动图预览样式 ▼▼▼ */
+        /* 新增CSS样式 */
+        .preview-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            cursor: pointer;
+        }
+        
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2% auto;
+            animation: zoomIn 0.3s;
+        }
+        
+        #previewVideo {
+            width: 100%;
+            height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            transition: 0.3s;
+            z-index: 10000;
+        }
+        
+        .close-btn:hover {
+            color: #ff4757;
+            transform: scale(1.2);
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* 为原视频添加点击反馈 */
+        .media-container {
+            transition: transform 0.3s;
+            cursor: zoom-in;
+        }
+        .media-container:hover {
+            transform: scale(1.02);
+        }
+        /* ▲▲▲ 插入结束 ▲▲▲ */          
     </style>
 </head>
 <body>
@@ -207,23 +268,26 @@
                     <h3>力帆投屏</h3>
                     <p>多设备共享屏幕，有浏览器即可用，开会视频讲解神器</p>
                     
-                    <!-- 视频容器 -->
-                    <div class="media-container">
+                    <div class="media-container" onclick="showVideoPreview(this)">
                         <video class="gif-preview" autoplay loop muted playsinline
-                               poster="sreengo-poster.jpg" 
-                               onerror="this.parentElement.classList.add('video-error')">
-                            <!-- 优先加载压缩格式 -->
+                               poster="sreengo-poster.jpg">
                             <source src="sreengo.mp4" type="video/mp4">
                             <source src="sreengo.webm" type="video/webm">
-                            
-                            <!-- 最终回退方案 -->
-                            <img src="sreengo.gif" alt="演示动图" 
-                                 loading="lazy"
-                                 onerror="this.style.display='none'">
                         </video>
                     </div>
-                
+                    
                     <a href="https://力帆投屏.funlee.ggff.net/" target="_blank">开始电脑端投屏</a>
+                </div>
+                
+                <!-- 新增预览模态框 -->
+                <div id="previewModal" class="preview-modal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closePreview()">&times;</span>
+                        <video id="previewVideo" autoplay loop muted controls>
+                            <source src="sreengo.mp4" type="video/mp4">
+                            <source src="sreengo.webm" type="video/webm">
+                        </video>
+                    </div>
                 </div>
         
                 <div class="project-card">
@@ -529,6 +593,45 @@
             });
         });
         // ▲▲▲ 插入到这里结束 ▲▲▲
+    // 新增JavaScript函数
+    let currentVideo = null; 
+    function showVideoPreview(container) {
+        const video = container.querySelector('video');
+        currentVideo = video.cloneNode(true); // 克隆视频元素
+        
+        // 显示模态框
+        const modal = document.getElementById('previewModal');
+        const previewVideo = document.getElementById('previewVideo');
+        
+        previewVideo.innerHTML = '';
+        previewVideo.appendChild(currentVideo);
+        modal.style.display = 'block';
+        
+        // 防止背景滚动
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closePreview() {
+        const modal = document.getElementById('previewModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // 暂停视频释放资源
+        if(currentVideo) {
+            currentVideo.pause();
+            currentVideo = null;
+        }
+    }
+    
+    // 点击模态框背景关闭
+    document.getElementById('previewModal').addEventListener('click', function(e) {
+        if(e.target === this) closePreview();
+    });
+    
+    // ESC键关闭
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') closePreview();
+    });        
     </script>
 </body>
 </html>
